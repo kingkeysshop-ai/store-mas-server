@@ -1,0 +1,16 @@
+{
+  "name": "king-keys-full-project",
+  "version": "1.0.0",
+  "description": "King Keys Full Stack - Medusa Backend + Storefront",
+  "scripts": {
+    "backend:dev": "cd backend && pnpm install && pnpm run ib && pnpm run dev",
+    "backend:start": "cd backend && pnpm run start",
+    "storefront:dev": "cd storefront && pnpm install && pnpm run dev",
+    "dev": "concurrently \"pnpm backend:dev\" \"pnpm storefront:dev\"",
+    "install:all": "pnpm --filter ./backend... install && pnpm --filter ./storefront... install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "packageManager": "pnpm@9.1.0"
+}
