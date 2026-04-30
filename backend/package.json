@@ -67,7 +67,7 @@
   },
   "packageManager": "pnpm@9.10.0",
   "engines": {
-    "node": "22.x",
+    "node": "24.x",
     "npm": "10.x"
   }
 }
