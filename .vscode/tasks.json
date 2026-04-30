@@ -1,0 +1,70 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Install PG16 (Manual)",
+      "type": "shell",
+      "command": "start",
+      "args": [
+        "https://www.enterprisedb.com/downloads/postgres-postgresql-downloads"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "detail": "Download PostgreSQL 16 for Windows"
+    },
+    {
+      "label": "2. Create PG Database",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c", "\"C:\\Program Files\\PostgreSQL\\16\\bin\\psql.exe\" -U postgres -c \"CREATE USER medusa PASSWORD 'medusa'; CREATE DATABASE medusa OWNER medusa; GRANT ALL PRIVILEGES ON DATABASE medusa TO medusa;\""
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Create medusa DB/user (Run as Admin)"
+    },
+    {
+      "label": "3. Backend: Install + Migrate + Dev",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "run",
+        "backend:dev"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false
+      },
+      "problemMatcher": {
+        "owner": "medusa",
+        "pattern": [
+          {
+            "regexp": "\\s+(.*)\\s+(\\d+,\\d+)->\\s+(.*)",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ]
+      },
+      "detail": "cd backend && pnpm install && pnpm run ib && pnpm run dev"
+    }
+  ]
+}

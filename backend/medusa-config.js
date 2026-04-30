@@ -75,6 +75,13 @@ const paymentProviders = [
 ];
 
 // Módulos opcionales (solo se incluyen si están configurados)
+const authProviders = [
+  ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET ? [{
+    resolve: './src/modules/auth-google',
+    id: 'google',
+  }] : []),
+];
+
 const optionalModules = [
   ...(notificationProviders.length > 0 ? [{
     key: Modules.NOTIFICATION,
@@ -85,6 +92,11 @@ const optionalModules = [
     key: Modules.PAYMENT,
     resolve: '@medusajs/payment',
     options: { providers: paymentProviders }
+  }] : []),
+  ...(authProviders.length > 0 ? [{
+    key: Modules.AUTH,
+    resolve: '@medusajs/auth',
+    options: { providers: authProviders }
   }] : []),
   // ⚠️ Modules.SEARCH eliminado — no existe en Medusa 2.x como módulo core
 ];

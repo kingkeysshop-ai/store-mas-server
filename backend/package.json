@@ -34,6 +34,8 @@
     "@medusajs/workflow-engine-redis": "2.13.6",
     "@react-email/components": "^1.0.12",
     "@rokmohar/medusa-plugin-meilisearch": "1.3.5",
+    "@variablevic/mollie-payments-medusa": "^0.0.13",
+    "google": "link:@medusajs/auth/google",
     "medusajs-launch-utils": "0.0.18",
     "minio": "^8.0.7",
     "resend": "4.0.1",
